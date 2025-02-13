@@ -1,4 +1,4 @@
-SerNum	Result	VolFrac	Mat	Test	DataSet
+sernum	result	volfrac	mat	test	set
 1	703.247	0.1	O	1mm	A
 2	695.846	0.15	O	1mm	A
 3	664.621	0.2	O	1mm	A
