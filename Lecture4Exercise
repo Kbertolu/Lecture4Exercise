@@ -1,0 +1,50 @@
+import pandas as pd
+import numpy as np
+url = 'https://raw.githubusercontent.com/Kbertolu/Lecture4Exercise/refs/heads/main/HW1_Consolidated_Data'
+# Read File:    
+HW1 = pd.read_csv(url, sep = '\t')
+
+# See 1st 10 entries:
+print(HW1.head(10))
+
+# What is # of observations in dataset:
+print(HW1.shape[0])
+print(HW1.info())
+# # of columns:
+print(HW1.shape[1])
+
+# Print column names:
+print('Columns: ', HW1.columns)
+
+#How is dataset indexed
+print('Indexed:',HW1.index)
+
+#Which was the most ordered item?
+c = HW1.groupby('Mat')
+c = c.sum()
+c = c.sort_values(['Test'], ascending=False)
+print(c.head(1))
+
+#Steps 9-11 don't really apply. Moving to step 12:
+#What was total sum of force for test 1mm:
+total_results = HW1.Result.sum()
+print('Total of derived data',total_results)
+
+#Change Ser. Num to string: Changed to apply to data, vice exercise which doesn't apply.
+print('SerNum Type:',HW1.SerNum.dtype)
+HW1['SerNum'] = HW1['SerNum'].astype(str)
+print('SerNum Type:',HW1.SerNum.dtype)
+#Change back for computation:
+HW1['SerNum'] = HW1['SerNum'].astype('int64')
+
+#Step 14: Modified from HW to apply:
+# How much is SerNum * Result, summed over total dataset:
+number = (HW1['SerNum'] * HW1['Result']).sum()
+print('SerNum * Result, summed: ',number)
+
+# What is average result across all tests:
+mean_sernum = HW1['SerNum'].mean()
+print('Mean of SerNum:', mean_sernum)
+
+#How many different test types:
+print('Different types of material: ',HW1.Mat.value_counts().count())
