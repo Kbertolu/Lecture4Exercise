@@ -48,3 +48,21 @@ print('Mean of SerNum:', mean_sernum)
 
 #How many different test types:
 print('Different types of material: ',HW1.Mat.value_counts().count())
+
+#__________________________________________________-
+#Post Class exercise:
+# #Step 4, how many results are greater than 300?
+#Drop duplicates:
+HW1_filtered=HW1.drop_duplicates(['Result'])
+print('How many Results > 300: ',HW1.query('Result > 300').Result.nunique())
+
+#What is result of these items:
+gt300 = HW1[(HW1['Result']) > 300]
+print(gt300)
+
+#Sort by ascending order:
+ascent = gt300.Result.sort_values()
+
+#How many of these were from Dataset 1:
+ds1total = HW1[(HW1['Result'] > 300) & (HW1['DataSet'] == '1')]
+print(len(ds1total))
